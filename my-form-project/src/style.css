@@ -46,6 +46,7 @@ h1 {
 /* Estilos del formulario de comentario */
 .comment-form {
     margin-bottom: 20px;
+    display: none;
 }
 
 textarea {

@@ -2,6 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8">
+    <title>Sistema de Comentarios</title>
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
     <link rel="stylesheet" href="style.css" />
     <link
@@ -10,8 +11,6 @@
       onload="this.rel='stylesheet'"
       href="https://fonts.googleapis.com/css2?display=swap&amp;family=Inter%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
     />
-
-    <title>Sistema de Comentarios</title>
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   </head>
@@ -49,16 +48,13 @@
             </label>
             <div class="flex gap-2">
               <div class="flex items-center gap-4 bg-[#f8fafb] px-4 min-h-14 justify-between">
-                <p class="text-[#0e141b] text-base font-normal leading-normal flex-1 truncate">View 12 replies</p>
+                <p class="text-[#0e141b] text-base font-normal leading-normal flex-1 truncate">News paper</p>
                 <div class="shrink-0">
-                  <button id="add-reply-btn" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#e8edf3] text-[#0e141b] text-sm font-medium leading-normal w-fit">
-                    <span class="truncate">Add a reply</span>
+                  <button id="book-btn" class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-8 px-4 bg-[#e8edf3] text-[#0e141b] text-sm font-medium leading-normal w-fit">
+                    <span class="truncate">Books</span>
                   </button>
                 </div>
               </div>
-              
-
-              
               
               <button
                 class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#e8edf3] text-[#0e141b] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
@@ -82,7 +78,7 @@
           <div class="layout-content-container flex flex-col w-[512px] max-w-[512px] py-5 max-w-[960px] flex-1">
             <div class="flex flex-wrap justify-between gap-3 p-4">
               <div class="flex min-w-72 flex-col gap-3">
-                <p class="text-[#0e141b] tracking-light text-[32px] font-bold leading-tight">The future of the metaverse</p>
+                <p class="text-[#0e141b] tracking-light text-[32px] font-bold leading-tight">Book: The future of the metaverse</p>
                 <p class="text-[#4f7396] text-sm font-normal leading-normal">2 hours ago</p>
               </div>
             </div>
@@ -112,54 +108,7 @@
                 </button>
               </div>
             </div>
-            
-            <h2 class="text-[#0e141b] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Newest first</h2>
-            
-            <!-- Comentario 1 -->
-            <div class="flex w-full flex-row items-start justify-start gap-3 p-4">
-              <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-10 shrink-0" style='background-image: url("https://cdn.usegalileo.ai/sdxl10/134bc93a-e251-4a76-8b1b-0b8f8950151e.png");'></div>
-              <div class="flex h-full flex-1 flex-col items-start justify-start">
-                <div class="flex w-full flex-row items-start justify-start gap-x-3">
-                  <p class="text-[#0e141b] text-sm font-bold leading-normal tracking-[0.015em]">danny</p>
-                  <p class="text-[#4f7396] text-sm font-normal leading-normal">3:00 PM</p>
-                </div>
-                <p class="text-[#0e141b] text-sm font-normal leading-normal">
-                  I agree, the metaverse has a lot of potential. The key is making it accessible and user-friendly for the average person. There's also the challenge of ensuring
-                  that it's a safe and inclusive space for everyone.
-                </p>
-              </div>
-            </div>
-            
-            <!-- Comentario 2 -->
-            <div class="flex w-full flex-row items-start justify-start gap-3 p-4">
-              <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-10 shrink-0" style='background-image: url("https://cdn.usegalileo.ai/sdxl10/7ac6acf1-ac9f-4ec3-a3d5-7dc9ebeaa4bc.png");'></div>
-              <div class="flex h-full flex-1 flex-col items-start justify-start">
-                <div class="flex w-full flex-row items-start justify-start gap-x-3">
-                  <p class="text-[#0e141b] text-sm font-bold leading-normal tracking-[0.015em]">michelle</p>
-                  <p class="text-[#4f7396] text-sm font-normal leading-normal">4:00 PM</p>
-                </div>
-                <p class="text-[#0e141b] text-sm font-normal leading-normal">
-                  I'm excited about the potential for new forms of entertainment and social interaction in the metaverse. But I also think it's important to be mindful of the
-                  impact on mental health and well-being, especially for young people. We need to strike a balance between the benefits and risks.
-                </p>
-              </div>
-            </div>
-            
-            <!-- Comentario 3 -->
-            <div class="flex w-full flex-row items-start justify-start gap-3 p-4">
-              <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-10 shrink-0" style='background-image: url("https://cdn.usegalileo.ai/sdxl10/7601b698-f160-4ee3-9071-cdbb73461068.png");'></div>
-              <div class="flex h-full flex-1 flex-col items-start justify-start">
-                <div class="flex w-full flex-row items-start justify-start gap-x-3">
-                  <p class="text-[#0e141b] text-sm font-bold leading-normal tracking-[0.015em]">ryan</p>
-                  <p class="text-[#4f7396] text-sm font-normal leading-normal">5:00 PM</p>
-                </div>
-                <p class="text-[#0e141b] text-sm font-normal leading-normal">
-                  I think the metaverse has a lot of potential for education and professional development. Imagine being able to attend virtual classes or conferences, collaborate
-                  with people around the world, and gain hands-on experience in a simulated environment. It could open up new opportunities for learning and career advancement.
-                </p>
-              </div>
-            </div>
-            
+                            
             <!-- Nuevo contenido agregado -->
             <div class="container">
               <h1>Comentarios del Libro</h1>
@@ -172,7 +121,51 @@
 
               <!-- Área donde se mostrarán los comentarios -->
               <div id="comments-section" class="comments-section">
-                <!-- Los comentarios se agregarán aquí -->
+                <h2 class="text-[#0e141b] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Newest first</h2>
+                <!-- Comentario 1 -->
+                <div class="flex w-full flex-row items-start justify-start gap-3 p-4">
+                  <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-10 shrink-0" style='background-image: url("https://cdn.usegalileo.ai/sdxl10/134bc93a-e251-4a76-8b1b-0b8f8950151e.png");'></div>
+                  <div class="flex h-full flex-1 flex-col items-start justify-start">
+                    <div class="flex w-full flex-row items-start justify-start gap-x-3">
+                      <p class="text-[#0e141b] text-sm font-bold leading-normal tracking-[0.015em]">danny</p>
+                      <p class="text-[#4f7396] text-sm font-normal leading-normal">3:00 PM</p>
+                    </div>
+                    <p class="text-[#0e141b] text-sm font-normal leading-normal">
+                      I agree, the metaverse has a lot of potential. The key is making it accessible and user-friendly for the average person. There's also the challenge of ensuring
+                      that it's a safe and inclusive space for everyone.
+                    </p>
+                  </div>
+                </div>
+                
+                <!-- Comentario 2 -->
+                <div class="flex w-full flex-row items-start justify-start gap-3 p-4">
+                  <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-10 shrink-0" style='background-image: url("https://cdn.usegalileo.ai/sdxl10/7ac6acf1-ac9f-4ec3-a3d5-7dc9ebeaa4bc.png");'></div>
+                  <div class="flex h-full flex-1 flex-col items-start justify-start">
+                    <div class="flex w-full flex-row items-start justify-start gap-x-3">
+                      <p class="text-[#0e141b] text-sm font-bold leading-normal tracking-[0.015em]">michelle</p>
+                      <p class="text-[#4f7396] text-sm font-normal leading-normal">4:00 PM</p>
+                    </div>
+                    <p class="text-[#0e141b] text-sm font-normal leading-normal">
+                      I'm excited about the potential for new forms of entertainment and social interaction in the metaverse. But I also think it's important to be mindful of the
+                      impact on mental health and well-being, especially for young people. We need to strike a balance between the benefits and risks.
+                    </p>
+                  </div>
+                </div>
+                
+                <!-- Comentario 3 -->
+                <div class="flex w-full flex-row items-start justify-start gap-3 p-4">
+                  <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-10 shrink-0" style='background-image: url("https://cdn.usegalileo.ai/sdxl10/7601b698-f160-4ee3-9071-cdbb73461068.png");'></div>
+                  <div class="flex h-full flex-1 flex-col items-start justify-start">
+                    <div class="flex w-full flex-row items-start justify-start gap-x-3">
+                      <p class="text-[#0e141b] text-sm font-bold leading-normal tracking-[0.015em]">ryan</p>
+                      <p class="text-[#4f7396] text-sm font-normal leading-normal">5:00 PM</p>
+                    </div>
+                    <p class="text-[#0e141b] text-sm font-normal leading-normal">
+                      I think the metaverse has a lot of potential for education and professional development. Imagine being able to attend virtual classes or conferences, collaborate
+                      with people around the world, and gain hands-on experience in a simulated environment. It could open up new opportunities for learning and career advancement.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
             
@@ -183,4 +176,3 @@
     </div>
   </body>
 </html>
-

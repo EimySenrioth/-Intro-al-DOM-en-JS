@@ -1,82 +1,187 @@
 import './style.css'
 import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
-// Esperar a que el DOM esté completamente cargado
+
+
 document.addEventListener('DOMContentLoaded', function() {
-  // Obtener referencias a los elementos del DOM de los elementos agregados
-  //a mi plantilla generado por IA, las partes del formulario las cree de manera manuel y se agregaron al final del formulario
+
   const commentTextArea = document.getElementById('comment-text');
   const addCommentBtn = document.getElementById('add-comment-btn');
   const commentsSection = document.getElementById('comments-section');
-//se uso el metdo get para obtener las referencias del HTML
-//el campo del texto donde se ingresara el comentario
-//el boton para agregar el comentario
-//la seccion donde se mostraran los comentarios, este lo plenea estilizar con css para que este dento de la plantilla
-  // Función para agregar un nuevo comentario cuendo se apreta añadir
-  function addComment() {
-      // Obtener el texto del comentario
-      const commentText = commentTextArea.value.trim();
-// value obtiene el valor del campo de texto y trim elimina los espacios en blanco al inicio y al final del texto
-      // Validar que el comentario no esté vacío
-      if (!commentText) {//! (negación lógica) en JavaScript se usa para invertir el valor de una expresión booleana.
-          alert('Por favor, escribe un comentario');
-          return;
-      }
-//si esta vacio se muestra un alerta y se retorna para que no se ejecute el resto del codigo
-      // Crear el elemento del comentario
-      const commentElement = document.createElement('div');
-      commentElement.className = 'comment';
-//se crea un div para contener el comentario y se le asigna la clase comment para darle estilo con css
-      // Obtener la fecha y hora actual
-      const now = new Date();
-      const formattedDate = now.toLocaleString();
-//se obtiene la fecha y hora actual y se le asigna a la variable formattedDate
-      // Crear la estructura interna del comentario
-      commentElement.innerHTML = `
-          <div class="comment-header">
-              <span class="comment-date">${formattedDate}</span>
-              <button class="delete-btn">Eliminar</button>
-          </div>
-          <div class="comment-content">
-              ${commentText}
-          </div>
-      `;
-//se crea la estructura interna del comentario, se agrega la fecha y hora y el boton de eliminar
-//se le da formato al comentario
-      // Agregar el evento para eliminar el comentario
-      //se useo el otro metodo del DOM, querySelector para obtener el boton de eliminar
-      const deleteBtn = commentElement.querySelector('.delete-btn');//se busca el elemnto con la clase de js que busca el dom que tenga  delete-btn
-      deleteBtn.addEventListener('click', () => {
-          if (confirm('¿Estás seguro de que quieres eliminar este comentario?')) {
-              commentElement.remove();
-          }
-      });
-//se agrega el evento para eliminar el comentario, si se confirma se elimina el comentario
-//evento click para el boton de eliminar
-//se eilimna usando el metodo remove
-      // Agregar el comentario al inicio de la sección de comentarios
-      commentsSection.insertBefore(commentElement, commentsSection.firstChild);
-//esta parte no esta conectada a la plantilla todavia, pues aparece abajo
-//se agrega el comentario al inicio de la seccion de comentarios
-//se usa el metodo insertBefore para agregar el comentario al inicio de la seccion
-      // Limpiar el textarea, es decir se borra el comentario para que el usario pueda escribir otro
-      commentTextArea.value = '';
+  const commentForm = document.querySelector('.comment-form');
+  
+  
+  const addReplyBtn = document.getElementById('add-reply-btn');
+
+  function showCommentForm() {
+    if (commentForm) {
+      commentForm.style.display = 'block';
+      commentTextArea.focus();
+    }
   }
 
-  // Agregar evento al botón de agregar comentario
-  addCommentBtn.addEventListener('click', addComment);
-  //se añade un event listener al boton de añadir comentario
-  //cuando se hace clik se ejecuta la  addComment
-//este es un plus que se agrego para que se pueda agregar un comentario con el
-//aqui se se agrego e.pr... para evitar el salto de linea, esto es comun en paginas web
-  // Agregar evento para enviar con Enter (Shift+Enter para nueva línea)
-  commentTextArea.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' && !e.shiftKey) {
-          e.preventDefault();
-          addComment();
+
+  function addComment() {
+
+    const commentText = commentTextArea.value.trim();
+
+
+    if (!commentText) {
+      alert('Por favor, escribe un comentario');
+      return;
+    }
+
+
+    const commentElement = document.createElement('div');
+    commentElement.className = 'flex w-full flex-row items-start justify-start gap-3 p-4';
+
+   
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formattedHours = hours % 12 || 12; 
+    const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+    const formattedTime = `${formattedHours}:${formattedMinutes} ${ampm}`;
+
+
+    commentElement.innerHTML = `
+      <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-10 shrink-0" style='background-image: url("https://drive.google.com/uc?export=view&id=1Fnu5Ft9vcPMJWosotE7QBhak5ZDh9x-m");'></div>
+      <div class="flex h-full flex-1 flex-col items-start justify-start">
+        <div class="flex w-full flex-row items-start justify-start gap-x-3">
+          <p class="username text-[#0e141b] text-sm font-bold leading-normal tracking-[0.015em]">Nuevo Usuario</p>
+          <p class="comment-date text-[#4f7396] text-sm font-normal leading-normal">${formattedTime}</p>
+        </div>
+        <p class="comment-text text-[#0e141b] text-sm font-normal leading-normal">
+          ${commentText}
+        </p>
+        <button class="delete-btn text-[#f44336] cursor-pointer text-sm underline mt-2">Eliminar</button>
+      </div>
+    `;
+
+
+    const deleteBtn = commentElement.querySelector('.delete-btn');
+    deleteBtn.addEventListener('click', () => {
+      if (confirm('¿Estás seguro de que quieres eliminar este comentario?')) {
+        commentElement.remove();
+        saveComments();
       }
-  });
+    });
+
+
+    const newestFirstTitle = commentsSection.querySelector('h2');
+    if (newestFirstTitle) {
+      commentsSection.insertBefore(commentElement, newestFirstTitle.nextElementSibling);
+    } else {
+
+      commentsSection.prepend(commentElement);
+    }
+
+
+    commentTextArea.value = '';
+
+
+    saveComments();
+  }
+
+
+  function saveComments() {
+    const comments = [];
+    const commentElements = commentsSection.querySelectorAll('.flex.w-full.flex-row.items-start.justify-start.gap-3.p-4');
+    
+    commentElements.forEach(commentElement => {
+
+      const usernameElement = commentElement.querySelector('.username');
+      if (usernameElement && usernameElement.innerText !== 'danny' && 
+          usernameElement.innerText !== 'michelle' && 
+          usernameElement.innerText !== 'ryan') {
+          
+        const textElement = commentElement.querySelector('.comment-text');
+        const dateElement = commentElement.querySelector('.comment-date');
+        
+        if (textElement && dateElement) {
+          comments.push({ 
+            text: textElement.innerText, 
+            date: dateElement.innerText 
+          });
+        }
+      }
+    });
+    
+    localStorage.setItem('comments', JSON.stringify(comments));
+  }
+
+
+  function loadComments() {
+    try {
+      const savedComments = localStorage.getItem('comments');
+      if (!savedComments) return;
+      
+      const comments = JSON.parse(savedComments);
+      
+      if (!Array.isArray(comments)) return;
+      
+      comments.forEach(comment => {
+        const commentElement = document.createElement('div');
+        commentElement.className = 'flex w-full flex-row items-start justify-start gap-3 p-4';
+        commentElement.innerHTML = `
+          <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-10 shrink-0" style='background-image: url("https://drive.google.com/uc?export=view&id=1Fnu5Ft9vcPMJWosotE7QBhak5ZDh9x-m");'></div>
+          <div class="flex h-full flex-1 flex-col items-start justify-start">
+            <div class="flex w-full flex-row items-start justify-start gap-x-3">
+              <p class="username text-[#0e141b] text-sm font-bold leading-normal tracking-[0.015em]">Nuevo Usuario</p>
+              <p class="comment-date text-[#4f7396] text-sm font-normal leading-normal">${comment.date}</p>
+            </div>
+            <p class="comment-text text-[#0e141b] text-sm font-normal leading-normal">
+              ${comment.text}
+            </p>
+            <button class="delete-btn text-[#f44336] cursor-pointer text-sm underline mt-2">Eliminar</button>
+          </div>
+        `;
+
+
+        const deleteBtn = commentElement.querySelector('.delete-btn');
+        deleteBtn.addEventListener('click', () => {
+          if (confirm('¿Estás seguro de que quieres eliminar este comentario?')) {
+            commentElement.remove();
+            saveComments();
+          }
+        });
+
+        // Insertar el comentario después del título "Newest first"
+        const newestFirstTitle = commentsSection.querySelector('h2');
+        if (newestFirstTitle) {
+          commentsSection.insertBefore(commentElement, newestFirstTitle.nextElementSibling);
+        } else {
+
+          commentsSection.prepend(commentElement);
+        }
+      });
+    } catch (error) {
+      console.error('Error al cargar comentarios:', error);
+
+      localStorage.removeItem('comments');
+    }
+  }
+
+
+  loadComments();
+
+
+  if (addCommentBtn) {
+    addCommentBtn.addEventListener('click', addComment);
+  }
+
+ 
+  if (commentTextArea) {
+    commentTextArea.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        addComment();
+      }
+    });
+  }
+
+  if (addReplyBtn) {
+    addReplyBtn.addEventListener('click', showCommentForm);
+  }
 });
-77//nota para mi:firstChild es una propiedad del DOM que devuelve el primer hijo de un nodo
-//firstElementChild es diferente a firstChild, ya que firstElementChild devuelve el primer hijo de un nodo como un elemento del DOM
-//en mi codigo commentsSection.firstChild devuelve el primer hijo de la seccion de comentarios,aqui debo meter los comentario de la platnilla
