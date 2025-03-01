@@ -147,7 +147,6 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         });
 
-        // Insertar el comentario después del título "Newest first"
         const newestFirstTitle = commentsSection.querySelector('h2');
         if (newestFirstTitle) {
           commentsSection.insertBefore(commentElement, newestFirstTitle.nextElementSibling);
